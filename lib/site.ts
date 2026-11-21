@@ -9,7 +9,7 @@ export type AgeId = (typeof ages)[number]["id"];
 export type AgeSlug = (typeof ages)[number]["slug"];
 
 export const contact = {
-  email: "sacramentostars10u@gmail.com",
+  email: "mrogers23458@gmail.com",
   instagram: "https://www.instagram.com/dugout.stars",
   instagramHandle: "@dugout.stars",
   facebook: "https://www.facebook.com/profile.php?id=61591228059035",
