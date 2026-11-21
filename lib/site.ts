@@ -75,7 +75,7 @@ export const faqs = [
   {
     question: "What happens after the form?",
     answer:
-      "The form opens an email with the details filled in. Send it, and a coach or director follows up by email or phone to set a private evaluation. Roster spots are decided after that evaluation.",
+      "A coach or director follows up by email or phone to set a private evaluation. Roster spots are decided after that evaluation.",
   },
   {
     question: "What does it cost?",

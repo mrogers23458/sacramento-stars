@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { parseInterest, type InterestLead, type InterestState } from "@/lib/interest";
+import { parseInterest, type InterestState } from "@/lib/interest";
 import { ages, birthYears, contact, type AgeId } from "@/lib/site";
 
 const initialState: InterestState = { status: "idle" };
@@ -15,29 +15,7 @@ function attachCampaign(formData: FormData) {
   formData.set("utm_term", params.get("utm_term") ?? "");
 }
 
-function mailHrefFor(lead: InterestLead) {
-  const subject = `Interest list · ${lead.age} · ${lead.playerFirstName}`;
-  const body = [
-    `Parent: ${lead.parentName}`,
-    `Email: ${lead.email}`,
-    `Phone: ${lead.phone}`,
-    `Player: ${lead.playerFirstName}`,
-    `Age: ${lead.age}`,
-    `Birth year: ${lead.birthYear}`,
-    `Current team: ${lead.currentTeam}`,
-    lead.position ? `Position: ${lead.position}` : "",
-    lead.note ? `Note: ${lead.note}` : "",
-    `Page: ${lead.page}`,
-    [lead.utmSource, lead.utmMedium, lead.utmCampaign].filter(Boolean).join(" / ")
-      ? `Campaign: ${[lead.utmSource, lead.utmMedium, lead.utmCampaign].filter(Boolean).join(" / ")}`
-      : "",
-  ]
-    .filter(Boolean)
-    .join("\n");
-  return `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-function deliverInterest(formData: FormData): InterestState {
+async function deliverInterest(formData: FormData): Promise<InterestState> {
   const parsed = parseInterest(formData);
   if (!parsed.ok) {
     return {
@@ -48,13 +26,53 @@ function deliverInterest(formData: FormData): InterestState {
   }
   if ("ignored" in parsed) return { status: "success" };
 
-  const mailHref = mailHrefFor(parsed.lead);
-  window.location.href = mailHref;
-  return {
-    status: "error",
-    mailHref,
-    message: `Open the email and press send. Your details are already filled in, and it goes to ${contact.email}.`,
-  };
+  const lead = parsed.lead;
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), 12000);
+  try {
+    const response = await fetch(`https://formsubmit.co/ajax/${contact.email}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      signal: controller.signal,
+      body: JSON.stringify({
+        name: lead.parentName,
+        email: lead.email,
+        phone: lead.phone,
+        player: lead.playerFirstName,
+        age: lead.age,
+        birthYear: lead.birthYear,
+        currentTeam: lead.currentTeam,
+        position: lead.position,
+        message: lead.note,
+        page: lead.page,
+        utm_source: lead.utmSource,
+        utm_medium: lead.utmMedium,
+        utm_campaign: lead.utmCampaign,
+        utm_content: lead.utmContent,
+        utm_term: lead.utmTerm,
+        _subject: `Interest list · ${lead.age} · ${lead.playerFirstName}`,
+        _template: "table",
+        _captcha: "false",
+        _replyto: lead.email,
+      }),
+    });
+    const data = (await response.json().catch(() => null)) as { success?: string } | null;
+    if (response.ok && String(data?.success) === "true") return { status: "success" };
+    return {
+      status: "error",
+      message: `Email ${contact.email} and the team will add you to the list.`,
+    };
+  } catch {
+    return {
+      status: "error",
+      message: `Email ${contact.email} and the team will add you to the list.`,
+    };
+  } finally {
+    window.clearTimeout(timer);
+  }
 }
 
 export function InterestForm({
@@ -65,6 +83,7 @@ export function InterestForm({
   page: string;
 }) {
   const [state, setState] = useState<InterestState>(initialState);
+  const [pending, setPending] = useState(false);
 
   if (state.status === "success") {
     return (
@@ -84,11 +103,14 @@ export function InterestForm({
     <form
       className="relative border border-line bg-raised p-6 sm:p-10"
       noValidate
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         attachCampaign(formData);
-        setState(deliverInterest(formData));
+        setPending(true);
+        const result = await deliverInterest(formData);
+        setPending(false);
+        setState(result);
       }}
     >
       <div className="absolute -left-[9999px]" aria-hidden="true">
@@ -171,19 +193,14 @@ export function InterestForm({
       </label>
 
       {state.status === "error" && state.message ? (
-        <div className="mt-5" role="alert">
-          <p className="text-sm leading-relaxed text-signal">{state.message}</p>
-          {state.mailHref ? (
-            <a className="btn mt-4 inline-flex" href={state.mailHref}>
-              Open the email
-            </a>
-          ) : null}
-        </div>
+        <p className="mt-5 text-sm leading-relaxed text-signal" role="alert">
+          {state.message}
+        </p>
       ) : null}
 
       <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center">
-        <button type="submit" className="btn inline-flex w-full sm:w-auto">
-          Join the interest list
+        <button type="submit" className="btn inline-flex w-full sm:w-auto" disabled={pending}>
+          {pending ? "Sending" : "Join the interest list"}
         </button>
         <p className="max-w-md text-sm leading-relaxed text-muted">
           The team will follow up about a private evaluation. Questions go to{" "}
