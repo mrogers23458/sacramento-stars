@@ -4,6 +4,7 @@ export type InterestState = {
   status: "idle" | "success" | "error";
   message?: string;
   fieldErrors?: Partial<Record<InterestField, string>>;
+  mailHref?: string;
 };
 
 export type InterestField =
