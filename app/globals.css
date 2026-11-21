@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #090909;
+  --foreground: #f4f1ea;
+  --muted: #b7b1a6;
+  --line: rgba(244, 241, 234, 0.16);
+  --raised: #121212;
+  --signal: #e10600;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-raised: var(--raised);
+  --color-signal: var(--signal);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-anton);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background: var(--background);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+}
+
+@media (max-width: 639px) {
+  body {
+    padding-bottom: 5.25rem;
+  }
+}
+
+::selection {
+  background: var(--signal);
+  color: white;
+}
+
+section[id] {
+  scroll-margin-top: 6.5rem;
+}
+
+.display {
+  font-family: var(--font-display), Impact, sans-serif;
+  letter-spacing: -0.015em;
+  line-height: 0.84;
+  text-transform: uppercase;
+}
+
+.btn {
+  align-items: center;
+  justify-content: center;
+  background: var(--signal);
+  color: white;
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  padding: 0.85rem 1.15rem 0.7rem;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background: #ff2a1a;
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible,
+.field:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+
+.nav-link {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  color: var(--foreground);
+}
+
+.kicker {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.field {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--foreground);
+  padding: 0.85rem 0.9rem;
+  font-size: 1rem;
+}
+
+.field::placeholder {
+  color: #7d7870;
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--signal);
+}
+
+.field[aria-invalid="true"] {
+  border-color: var(--signal);
 }
