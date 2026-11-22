@@ -203,11 +203,7 @@ export function InterestForm({
           {pending ? "Sending" : "Join the interest list"}
         </button>
         <p className="max-w-md text-sm leading-relaxed text-muted">
-          The team will follow up about a private evaluation. Questions go to{" "}
-          <a className="text-foreground underline" href={`mailto:${contact.email}`}>
-            {contact.email}
-          </a>
-          .
+          The team will follow up about a private evaluation.
         </p>
       </div>
     </form>

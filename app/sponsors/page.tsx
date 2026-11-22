@@ -13,7 +13,7 @@ export default function SponsorsPage() {
       <p className="kicker">Sponsors</p>
       <h1 className="display mt-4 max-w-4xl text-[clamp(4rem,10vw,7.5rem)]">
         Put your name
-        <span className="block text-signal">on the Stars.</span>
+        <span className="pop block w-fit">on the Stars.</span>
       </h1>
       <p className="mt-8 max-w-2xl text-lg leading-relaxed">
         Local businesses can put their name on Sacramento Stars. Support stays with the teams in

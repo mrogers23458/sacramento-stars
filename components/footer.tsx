@@ -6,7 +6,17 @@ export function Footer() {
     <footer className="border-t border-line">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-3">
         <div>
-          <p className="display text-4xl">Sacramento Stars</p>
+          <div className="flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/mark.svg`}
+              alt=""
+              width={28}
+              height={36}
+              className="h-9 w-auto"
+            />
+            <p className="display text-4xl">Sacramento Stars</p>
+          </div>
           <p className="mt-3 text-sm text-muted">North Natomas, Sacramento</p>
         </div>
         <div className="flex flex-col gap-2 text-sm">

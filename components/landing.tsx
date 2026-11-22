@@ -14,10 +14,10 @@ export function Landing({ age }: { age?: AgeId }) {
       <section className="mx-auto max-w-6xl px-5 pt-14 pb-16 sm:pt-20 sm:pb-24">
         <p className="kicker">{age ? `${age} · North Natomas` : "North Natomas · Sacramento"}</p>
         <h1 className="display mt-5 text-[clamp(4.6rem,15vw,10.5rem)]">
-          <span className={age ? "text-signal" : undefined}>{headlineLead}</span>
-          <span className={age ? "block" : "block text-signal"}>Stars</span>
+          <span className={age ? "pop" : undefined}>{headlineLead}</span>
+          <span className={age ? "block" : "pop block w-fit"}>Stars</span>
         </h1>
-        <p className="mt-8 max-w-xl border-l-2 border-signal pl-4 text-lg leading-relaxed sm:text-xl">
+        <p className="accent-rule mt-8 max-w-xl pl-4 text-lg leading-relaxed sm:text-xl">
           {subline}
         </p>
         <a href="#interest" className="btn mt-8 inline-flex">
@@ -36,7 +36,7 @@ export function Landing({ age }: { age?: AgeId }) {
           <p className="kicker">Teams</p>
           <h2 className="display mt-4 text-6xl sm:text-8xl">
             Four ages.
-            <span className="block text-signal">One list.</span>
+            <span className="pop block w-fit">One list.</span>
           </h2>
           <ul className="mt-10 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
             {ages.map((item) => {
@@ -45,7 +45,7 @@ export function Landing({ age }: { age?: AgeId }) {
                 <li key={item.id} className="bg-background">
                   <Link
                     href={current ? "#interest" : `/${item.slug}#interest`}
-                    className={`flex h-full flex-col justify-between p-6 transition-colors hover:bg-raised ${current ? "border-l-2 border-signal" : ""}`}
+                    className={`flex h-full flex-col justify-between p-6 transition-colors hover:bg-raised ${current ? "accent-rule" : ""}`}
                     aria-current={current ? "page" : undefined}
                   >
                     <span className="display text-7xl">{item.label}</span>
@@ -65,7 +65,7 @@ export function Landing({ age }: { age?: AgeId }) {
           <ul className="mt-12 grid gap-12 sm:grid-cols-2">
             {standard.map((item) => (
               <li key={item.number}>
-                <p className="display text-5xl text-signal">{item.number}</p>
+                <p className="display pop text-5xl">{item.number}</p>
                 <h3 className="mt-3 text-xl font-semibold">{item.title}</h3>
                 <p className="mt-2 max-w-md leading-relaxed text-muted">{item.body}</p>
               </li>
@@ -81,7 +81,7 @@ export function Landing({ age }: { age?: AgeId }) {
           <ol className="mt-12 grid gap-10 lg:grid-cols-3">
             {steps.map((step) => (
               <li key={step.number} className="border-t border-line pt-6">
-                <p className="display text-5xl text-signal">{step.number}</p>
+                <p className="display pop text-5xl">{step.number}</p>
                 <h3 className="mt-4 text-2xl font-semibold">{step.title}</h3>
                 <p className="mt-3 leading-relaxed text-muted">{step.body}</p>
               </li>
@@ -99,7 +99,7 @@ export function Landing({ age }: { age?: AgeId }) {
             </div>
             <a
               href={contact.instagram}
-              className="kicker text-foreground hover:text-signal"
+              className="kicker text-foreground hover:text-blue"
               target="_blank"
               rel="noreferrer"
             >
@@ -147,7 +147,7 @@ export function Landing({ age }: { age?: AgeId }) {
           <p className="kicker">Interest list</p>
           <h2 className="display mt-4 max-w-4xl text-6xl sm:text-8xl">
             Tell us who
-            <span className="block text-signal">is playing.</span>
+            <span className="pop block w-fit">is playing.</span>
           </h2>
           <div className="relative mt-10">
             <InterestForm age={age} page={page} />

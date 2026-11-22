@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #090909;
+  --background: #0b0a0a;
   --foreground: #f4f1ea;
   --muted: #b7b1a6;
   --line: rgba(244, 241, 234, 0.16);
-  --raised: #121212;
-  --signal: #e10600;
+  --raised: #221f1f;
+  --signal: #ff1a1a;
+  --blue: #0074ff;
+  --pop: linear-gradient(90deg, #0074ff 0%, #ff1a1a 100%);
 }
 
 @theme inline {
@@ -16,6 +18,7 @@
   --color-line: var(--line);
   --color-raised: var(--raised);
   --color-signal: var(--signal);
+  --color-blue: var(--blue);
   --font-sans: var(--font-geist-sans);
   --font-display: var(--font-anton);
 }
@@ -45,7 +48,7 @@ body {
 }
 
 ::selection {
-  background: var(--signal);
+  background: var(--blue);
   color: white;
 }
 
@@ -63,7 +66,8 @@ section[id] {
 .btn {
   align-items: center;
   justify-content: center;
-  background: var(--signal);
+  background-color: var(--signal);
+  background-image: var(--pop);
   color: white;
   font-family: var(--font-display), Impact, sans-serif;
   font-size: 1.25rem;
@@ -74,7 +78,29 @@ section[id] {
 }
 
 .btn:hover {
-  background: #ff2a1a;
+  filter: brightness(1.12);
+}
+
+.btn:disabled {
+  filter: none;
+  opacity: 0.65;
+}
+
+.pop {
+  background-image: var(--pop);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand-bar {
+  height: 2px;
+  background-image: var(--pop);
+}
+
+.accent-rule {
+  border-left: 2px solid transparent;
+  border-image: linear-gradient(180deg, #0074ff, #ff1a1a) 1;
 }
 
 .btn:focus-visible,

@@ -30,14 +30,14 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-line bg-background/92 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
         <Link href="/" className="flex items-center gap-3">
-          {/* The Pages base path has to be in the URL. next/image left this file at /logo.png. */}
+          {/* The Pages base path has to be in the URL. next/image left raw files at the domain root. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo.png`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/mark.svg`}
             alt="Sacramento Stars"
-            width={44}
+            width={34}
             height={44}
-            className="size-11"
+            className="h-11 w-auto"
           />
           <span className="display hidden text-[1.7rem] sm:block">Sacramento Stars</span>
         </Link>
@@ -62,6 +62,7 @@ export function Header() {
           </a>
         ))}
       </nav>
+      <div className="brand-bar" aria-hidden="true" />
     </header>
   );
 }

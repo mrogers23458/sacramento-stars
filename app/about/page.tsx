@@ -13,7 +13,7 @@ export default function AboutPage() {
       <p className="kicker">About</p>
       <h1 className="display mt-4 max-w-4xl text-[clamp(4rem,10vw,7.5rem)]">
         Born in
-        <span className="block text-signal">North Natomas.</span>
+        <span className="pop block w-fit">North Natomas.</span>
       </h1>
       <div className="mt-10 max-w-2xl space-y-6 text-lg leading-relaxed">
         <p>
