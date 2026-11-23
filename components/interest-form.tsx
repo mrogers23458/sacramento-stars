@@ -30,7 +30,7 @@ async function deliverInterest(formData: FormData): Promise<InterestState> {
   const controller = new AbortController();
   const timer = window.setTimeout(() => controller.abort(), 12000);
   try {
-    const response = await fetch(`https://formsubmit.co/ajax/${contact.email}`, {
+    const response = await fetch(`https://formsubmit.co/ajax/${contact.interestEmail}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,12 +63,12 @@ async function deliverInterest(formData: FormData): Promise<InterestState> {
     if (response.ok && String(data?.success) === "true") return { status: "success" };
     return {
       status: "error",
-      message: `Email ${contact.email} and the team will add you to the list.`,
+      message: `Email ${contact.interestEmail} and the team will add you to the list.`,
     };
   } catch {
     return {
       status: "error",
-      message: `Email ${contact.email} and the team will add you to the list.`,
+      message: `Email ${contact.interestEmail} and the team will add you to the list.`,
     };
   } finally {
     window.clearTimeout(timer);
