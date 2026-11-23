@@ -91,7 +91,7 @@ export function InterestForm({
         <p className="kicker text-signal">Interest list</p>
         <h2 className="display mt-4 text-6xl sm:text-7xl">You&apos;re on the list.</h2>
         <p className="mt-6 max-w-xl text-lg leading-relaxed">
-          Sacramento Stars will follow up about a private evaluation.
+          Sacramento Stars will follow up about a tryout, workout, or evaluation.
         </p>
       </div>
     );
@@ -203,7 +203,7 @@ export function InterestForm({
           {pending ? "Sending" : "Join the interest list"}
         </button>
         <p className="max-w-md text-sm leading-relaxed text-muted">
-          The team will follow up about a private evaluation.
+          The team will follow up about a tryout, workout, or evaluation.
         </p>
       </div>
     </form>

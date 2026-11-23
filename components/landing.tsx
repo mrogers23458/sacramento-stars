@@ -27,7 +27,7 @@ export function Landing({ age }: { age?: AgeId }) {
         </a>
         <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-5 text-xs font-semibold tracking-[0.16em] text-muted uppercase">
           <li>Tournaments</li>
-          <li>Private evaluations</li>
+          <li>Tryouts and workouts</li>
           <li>North Natomas</li>
           <li>10U–13U</li>
         </ul>

@@ -101,8 +101,8 @@ export const standard = [
   },
   {
     number: "03",
-    title: "Private evaluations",
-    body: "The interest list leads to a private evaluation. Roster decisions start there.",
+    title: "Tryouts and workouts",
+    body: "Players come in through a private evaluation, a regular tryout, or an open workout. Roster decisions start there.",
   },
   {
     number: "04",
@@ -119,8 +119,8 @@ export const steps = [
   },
   {
     number: "02",
-    title: "Private evaluation",
-    body: "The team follows up to schedule an evaluation. A form does not hold a roster spot.",
+    title: "Tryout or workout",
+    body: "Next is a private evaluation, a regular tryout, or an open workout to get a feel for the team. A form does not hold a roster spot.",
   },
   {
     number: "03",
@@ -148,7 +148,7 @@ export const faqs = [
   {
     question: "What happens after the form?",
     answer:
-      "A coach or director follows up by email or phone to set a private evaluation. Roster spots are decided after that evaluation.",
+      "A coach or director follows up by email or phone to set a private evaluation, a regular tryout, or an open workout. Roster spots are decided after that.",
   },
   {
     question: "What does it cost?",

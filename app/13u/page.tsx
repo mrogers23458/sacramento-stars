@@ -4,7 +4,7 @@ import { Landing } from "@/components/landing";
 export const metadata: Metadata = {
   title: "13U interest list",
   description:
-    "Join the Sacramento Stars 13U interest list. Higher-level travel baseball in North Natomas, with a private evaluation to follow.",
+    "Join the Sacramento Stars 13U interest list. Higher-level travel baseball in North Natomas. A tryout, workout, or private evaluation follows.",
 };
 
 export default function Page() {

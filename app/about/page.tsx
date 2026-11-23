@@ -22,8 +22,8 @@ export default function AboutPage() {
         </p>
         <p>
           The program is for families who want tournament baseball, and for players who train on
-          and off the field. Private evaluations decide roster spots. Interest lists are open for
-          10U, 11U, 12U, and 13U.
+          and off the field. Roster spots are decided after a private evaluation, a regular
+          tryout, or an open workout. Interest lists are open for 10U, 11U, 12U, and 13U.
         </p>
       </div>
       <Link href="/#interest" className="btn mt-10 inline-flex">
