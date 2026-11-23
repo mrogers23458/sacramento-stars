@@ -28,9 +28,9 @@ async function deliverInterest(formData: FormData): Promise<InterestState> {
 
   const lead = parsed.lead;
   const controller = new AbortController();
-  const timer = window.setTimeout(() => controller.abort(), 12000);
+  const timer = window.setTimeout(() => controller.abort(), 20000);
   try {
-    const response = await fetch(`https://formsubmit.co/ajax/${contact.interestEmail}`, {
+    const response = await fetch(`https://formsubmit.co/ajax/${contact.formSubmit}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

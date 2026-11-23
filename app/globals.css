@@ -173,6 +173,11 @@ section[id] {
   color: #7d7870;
 }
 
+select.field option {
+  background-color: #ffffff;
+  color: #0b0a0a;
+}
+
 .field:focus {
   outline: none;
   border-color: var(--signal);
