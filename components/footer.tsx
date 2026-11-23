@@ -23,6 +23,9 @@ export function Footer() {
           <Link href="/#interest" className="nav-link w-fit">
             Interest list
           </Link>
+          <Link href="/#coaches" className="nav-link w-fit">
+            Coaches
+          </Link>
           <Link href="/about" className="nav-link w-fit">
             About
           </Link>

@@ -105,9 +105,39 @@ section[id] {
 
 .btn:focus-visible,
 .nav-link:focus-visible,
-.field:focus-visible {
+.field:focus-visible,
+.carousel-btn:focus-visible {
   outline: 2px solid white;
   outline-offset: 3px;
+}
+
+.carousel {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel {
+    scroll-behavior: auto;
+  }
+}
+
+.carousel-btn {
+  border: 1px solid var(--line);
+  color: var(--foreground);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  padding: 0.7rem 0.9rem 0.6rem;
+  text-transform: uppercase;
+}
+
+.carousel-btn:hover {
+  border-color: var(--foreground);
 }
 
 .nav-link {

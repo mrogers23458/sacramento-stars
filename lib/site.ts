@@ -15,6 +15,79 @@ export const contact = {
   facebook: "https://www.facebook.com/profile.php?id=61591228059035",
 };
 
+export const photos = [
+  {
+    src: "/photos/catcher.jpg",
+    alt: "A catcher in a blue pinstripe jersey set behind the plate",
+    href: "https://www.instagram.com/dugout.stars/p/DfXouo8GoCd/",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    src: "/photos/red-huddle.jpg",
+    alt: "Sacramento Stars players in red jerseys put their hands in before a game",
+    href: "https://www.instagram.com/dugout.stars/p/DezpsJUlQcR/",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    src: "/photos/runner.jpg",
+    alt: "A Sacramento Stars player running the bases",
+    href: "https://www.instagram.com/dugout.stars/p/DfXouo8GoCd/",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    src: "/photos/red-four.jpg",
+    alt: "Four Sacramento Stars players in red jerseys after a game",
+    href: "https://www.instagram.com/dugout.stars/p/DecV5UECI5Z/",
+    width: 1440,
+    height: 1080,
+  },
+  {
+    src: "/photos/eye-black.jpg",
+    alt: "Two Sacramento Stars players on the field, one putting on eye black",
+    href: "https://www.instagram.com/dugout.stars/p/DezpsJUlQcR/",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    src: "/photos/red-bench.jpg",
+    alt: "Sacramento Stars players in red jerseys on the bench",
+    href: "https://www.instagram.com/dugout.stars/p/DezpsJUlQcR/",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    src: "/photos/on-base.jpg",
+    alt: "A Sacramento Stars player on base during a game",
+    href: "https://www.instagram.com/dugout.stars/p/DfXouo8GoCd/",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    src: "/photos/team.jpg",
+    alt: "The Sacramento Stars team in red jerseys on the field",
+    href: "https://www.instagram.com/dugout.stars/p/DfQw2_jiMVb/",
+    width: 1080,
+    height: 720,
+  },
+  {
+    src: "/photos/high-five.jpg",
+    alt: "A coach and a Sacramento Stars player high-five before a game",
+    href: "https://www.instagram.com/dugout.stars/p/Derxgdvm9CR/",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    src: "/photos/dugout.jpg",
+    alt: "Sacramento Stars players gathered by the dugout",
+    href: "https://www.instagram.com/dugout.stars/p/DeXYUr8jGwz/",
+    width: 1080,
+    height: 1350,
+  },
+] as const;
+
 export const standard = [
   {
     number: "01",
@@ -115,6 +188,15 @@ export const sponsorLevels = [
       "Social media thank-you post",
       "Listed on sponsor page",
     ],
+  },
+] as const;
+
+export const coaches = [
+  {
+    name: "Michael Rogers",
+    role: "Head coach",
+    image: "/coaches/michael-rogers.jpg",
+    bio: "Coach Michael Rogers is the head coach of Sacramento Stars Havoc team. A former U.S. Air Force veteran with a background in kinesiology, he brings a disciplined, development-first approach to coaching. He emphasizes fundamentals, athletic development, accountability, and competitive baseball while fostering a genuine love for the game. His goal is to challenge young athletes, build confidence, and help every player reach their full potential both on and off the field.",
   },
 ] as const;
 

@@ -22,6 +22,7 @@ export function Header() {
   const links = [
     { href: hrefFor(pathname, "teams"), label: "Teams" },
     { href: hrefFor(pathname, "standard"), label: "The Standard" },
+    { href: hrefFor(pathname, "coaches"), label: "Coaches" },
     { href: hrefFor(pathname, "faq"), label: "FAQ" },
     { href: sitePath("/sponsors"), label: "Sponsors" },
   ];

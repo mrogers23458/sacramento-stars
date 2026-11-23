@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { CoachingStaff } from "@/components/coaches";
 import { InterestForm } from "@/components/interest-form";
+import { PhotoCarousel } from "@/components/photo-carousel";
 import { ages, contact, faqs, standard, steps, type AgeId } from "@/lib/site";
 
 export function Landing({ age }: { age?: AgeId }) {
@@ -106,17 +108,18 @@ export function Landing({ age }: { age?: AgeId }) {
               {contact.instagramHandle}
             </a>
           </div>
-          <ul className="mt-10 grid grid-cols-2 gap-px bg-line lg:grid-cols-4">
-            {["01", "02", "03", "04"].map((slot) => (
-              <li key={slot} className="flex aspect-[3/4] flex-col justify-between bg-raised p-4">
-                <span className="kicker">{slot}</span>
-                <span className="text-sm text-muted">Photo coming</span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted">
-            Game photos will land here. Follow {contact.instagramHandle} for this season.
-          </p>
+          <PhotoCarousel />
+        </div>
+      </section>
+
+      <section id="coaches" className="border-t border-line">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
+          <p className="kicker">Coaching staff</p>
+          <h2 className="display mt-4 text-6xl sm:text-8xl">
+            The people
+            <span className="pop block w-fit">on the field.</span>
+          </h2>
+          <CoachingStaff />
         </div>
       </section>
 
