@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { parseInterest, type InterestState } from "@/lib/interest";
+import { parseInterest, type InterestLead, type InterestState } from "@/lib/interest";
 import { ages, birthYears, contact, type AgeId } from "@/lib/site";
 
 const initialState: InterestState = { status: "idle" };
@@ -13,6 +13,31 @@ function attachCampaign(formData: FormData) {
   formData.set("utm_campaign", params.get("utm_campaign") ?? "");
   formData.set("utm_content", params.get("utm_content") ?? "");
   formData.set("utm_term", params.get("utm_term") ?? "");
+}
+
+function interestMailto(lead: InterestLead) {
+  const lines = [
+    `Parent: ${lead.parentName}`,
+    `Email: ${lead.email}`,
+    `Phone: ${lead.phone}`,
+    `Player: ${lead.playerFirstName}`,
+    `Age: ${lead.age}`,
+    `Birth year: ${lead.birthYear}`,
+    `Current team: ${lead.currentTeam}`,
+    lead.position ? `Position: ${lead.position}` : "",
+    lead.note ? `Note: ${lead.note}` : "",
+    `Page: ${lead.page}`,
+  ].filter(Boolean);
+  const subject = `Interest list · ${lead.age} · ${lead.playerFirstName}`;
+  return `mailto:${contact.interestEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+}
+
+function deliveryError(lead: InterestLead): InterestState {
+  return {
+    status: "error",
+    mailto: interestMailto(lead),
+    message: `The form service didn’t answer. Email ${contact.interestEmail} and the team will add you to the list.`,
+  };
 }
 
 async function deliverInterest(formData: FormData): Promise<InterestState> {
@@ -28,7 +53,7 @@ async function deliverInterest(formData: FormData): Promise<InterestState> {
 
   const lead = parsed.lead;
   const controller = new AbortController();
-  const timer = window.setTimeout(() => controller.abort(), 20000);
+  const timer = window.setTimeout(() => controller.abort(), 8000);
   try {
     const response = await fetch(`https://formsubmit.co/ajax/${contact.formSubmit}`, {
       method: "POST",
@@ -61,15 +86,9 @@ async function deliverInterest(formData: FormData): Promise<InterestState> {
     });
     const data = (await response.json().catch(() => null)) as { success?: string } | null;
     if (response.ok && String(data?.success) === "true") return { status: "success" };
-    return {
-      status: "error",
-      message: `Email ${contact.interestEmail} and the team will add you to the list.`,
-    };
+    return deliveryError(lead);
   } catch {
-    return {
-      status: "error",
-      message: `Email ${contact.interestEmail} and the team will add you to the list.`,
-    };
+    return deliveryError(lead);
   } finally {
     window.clearTimeout(timer);
   }
@@ -193,9 +212,14 @@ export function InterestForm({
       </label>
 
       {state.status === "error" && state.message ? (
-        <p className="mt-5 text-sm leading-relaxed text-signal" role="alert">
-          {state.message}
-        </p>
+        <div className="mt-5" role="alert">
+          <p className="text-sm leading-relaxed text-signal">{state.message}</p>
+          {state.mailto ? (
+            <a className="btn mt-4 inline-flex" href={state.mailto}>
+              Email {contact.interestEmail}
+            </a>
+          ) : null}
+        </div>
       ) : null}
 
       <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center">

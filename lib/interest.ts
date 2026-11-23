@@ -3,6 +3,7 @@ import { ages, birthYears, type AgeId } from "@/lib/site";
 export type InterestState = {
   status: "idle" | "success" | "error";
   message?: string;
+  mailto?: string;
   fieldErrors?: Partial<Record<InterestField, string>>;
 };
 
